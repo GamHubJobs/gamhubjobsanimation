@@ -25,12 +25,30 @@ body {
 
 /* ==================================================
    LAYOUT STRUCTURE — outer frame + aspect ratio
+
+   NOTE: the ratio is locked with the classic
+   "padding-top" technique (not the `aspect-ratio`
+   property) because that's the version every browser —
+   including older in-app/WebView browsers people use to
+   screenshot from — renders 100% consistently. All the
+   child elements below use percentages that are pre-
+   calculated against this exact 4:5 ratio, so circles
+   stay perfectly round and nothing drifts.
    ================================================== */
-.jobad {
+.jobad-outer {
   position: relative;
   width: 100%;
   max-width: 460px;
-  aspect-ratio: 4 / 5;
+  margin: 0 auto;
+}
+.jobad-outer::before {
+  content: "";
+  display: block;
+  padding-top: 125%; /* 5 / 4 = 125% -> locks a 4:5 box */
+}
+.jobad {
+  position: absolute;
+  inset: 0;
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 20px 45px rgba(0,0,0,0.28);
@@ -67,37 +85,50 @@ body {
   pointer-events: none;
 }
 
-/* Layer 4: brand logo, top-left — REPLACE via jobAd.brandLogo */
+/* Layer 4: brand logo, top-left — REPLACE via jobAd.brandLogo.
+   Fixed-size white card (not sized off the image), so any logo —
+   tall, wide, square, with its own white background or not —
+   sits in an identical, predictable box and can never collide
+   with the title below it. */
 .jobad__brand {
   position: absolute;
-  top: 5%;
+  top: 4%;
   left: 6%;
+  width: 42%;
+  height: 10.5%;
   z-index: 5;
-  max-width: 40%;
-  max-height: 10%;
+  background: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.28);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5% 8%;
 }
 .jobad__brand img {
   display: block;
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
 }
 .jobad__brand-fallback {
   font-weight: 800;
-  font-size: clamp(14px, 4vw, 18px);
-  color: var(--white);
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  letter-spacing: 0.3px;
+  font-size: clamp(12px, 3.4vw, 16px);
+  color: var(--dark-brown);
+  letter-spacing: 0.2px;
+  white-space: nowrap;
 }
-.jobad__brand-fallback span { color: var(--light-gold); }
+.jobad__brand-fallback span { color: var(--primary-brown); }
 
-/* Layer 5: job title, rounded box — REPLACE via jobAd.jobTitle */
+/* Layer 5: job title, rounded box — REPLACE via jobAd.jobTitle.
+   Sits below the brand badge (4% + 10.5% + gap) and stays clear
+   of the curve on the right (curve never comes left of ~64% width
+   in this band — see the SVG path comments in index.html). */
 .jobad__title-wrap {
   position: absolute;
-  top: 17%;
-  left: 7%;
-  right: 30%;
+  top: 18.5%;
+  left: 6%;
+  right: 34%;
   z-index: 5;
 }
 .jobad__title {
@@ -115,13 +146,19 @@ body {
   border-left: 4px solid var(--gold);
 }
 
-/* Layer 6: company logo, circular badge — REPLACE via jobAd.companyLogo */
+/* Layer 6: company logo, circular badge — REPLACE via jobAd.companyLogo.
+   width:30% / height:24% is not arbitrary: the container is a fixed
+   4:5 box, so 30% of the width and 24% of the height are the exact
+   same pixel amount — that's what keeps this a true circle instead
+   of the oval you saw before (which came from relying on the
+   `aspect-ratio` CSS property, which one of the target browsers
+   wasn't honoring inside this layout). */
 .jobad__company {
   position: absolute;
-  top: 48%;
+  top: 46%;
   left: 6%;
   width: 30%;
-  aspect-ratio: 1 / 1;
+  height: 24%;
   z-index: 5;
   background: var(--white);
   border-radius: 50%;
