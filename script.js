@@ -1,8 +1,3 @@
-/* ==================================================
-   10. CONFIGURATION — change ONLY these values to
-   create a new job advertisement. Nothing else in the
-   HTML/CSS needs to be touched.
-   ================================================== */
 const jobAd = {
   // Local path or remote URL — both work
   backgroundImage: "https://www.herzing.edu/sites/default/files/styles/fp_900_700/public/2021-08/it-support-technician_0.jpg.webp?h=4cd27b3f&itok=QBTPKgnU",
