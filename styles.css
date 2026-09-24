@@ -1,0 +1,168 @@
+/* ==================================================
+   1. COLOR PALETTE  — change these to re-theme everything
+   ================================================== */
+:root {
+  --primary-brown: #6B4526;
+  --dark-brown:    #3A2414;
+  --gold:          #C89B3C;
+  --light-gold:    #E5B64A;
+  --cream:         #F7F3EC;
+  --white:         #FFFFFF;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 40px 16px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ECE7DD;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ==================================================
+   LAYOUT STRUCTURE — outer frame + aspect ratio
+   ================================================== */
+.jobad {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  aspect-ratio: 4 / 5;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.28);
+  background: var(--dark-brown); /* fallback while image loads */
+  isolation: isolate;
+}
+
+/* Layer 1: background photograph — REPLACE via jobAd.backgroundImage */
+.jobad__photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+/* subtle darken so white/gold text stays legible over any photo */
+.jobad__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 30%, rgba(0,0,0,0.1) 70%, rgba(0,0,0,0.45) 100%);
+}
+
+/* Layer 2/3: curved separator + solid color panel (pure CSS/SVG, never baked into an image) */
+.jobad__curve {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Layer 4: brand logo, top-left — REPLACE via jobAd.brandLogo */
+.jobad__brand {
+  position: absolute;
+  top: 5%;
+  left: 6%;
+  z-index: 5;
+  max-width: 40%;
+  max-height: 10%;
+}
+.jobad__brand img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+}
+.jobad__brand-fallback {
+  font-weight: 800;
+  font-size: clamp(14px, 4vw, 18px);
+  color: var(--white);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  letter-spacing: 0.3px;
+}
+.jobad__brand-fallback span { color: var(--light-gold); }
+
+/* Layer 5: job title, rounded box — REPLACE via jobAd.jobTitle */
+.jobad__title-wrap {
+  position: absolute;
+  top: 17%;
+  left: 7%;
+  right: 30%;
+  z-index: 5;
+}
+.jobad__title {
+  display: inline-block;
+  background: var(--dark-brown);
+  color: var(--white);
+  font-weight: 700;
+  line-height: 1.25;
+  padding: 0.6em 1em;
+  border-radius: 6px 22px 22px 6px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+  font-size: clamp(15px, 4.2vw, 21px);
+  max-width: 100%;
+  word-break: break-word;
+  border-left: 4px solid var(--gold);
+}
+
+/* Layer 6: company logo, circular badge — REPLACE via jobAd.companyLogo */
+.jobad__company {
+  position: absolute;
+  top: 48%;
+  left: 6%;
+  width: 30%;
+  aspect-ratio: 1 / 1;
+  z-index: 5;
+  background: var(--white);
+  border-radius: 50%;
+  border: 4px solid var(--light-gold);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10%;
+}
+.jobad__company img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Layer 7: CTA button — REPLACE via jobAd.ctaText / jobAd.applyUrl */
+.jobad__cta {
+  position: absolute;
+  bottom: 6%;
+  left: 6%;
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--dark-brown);
+  color: var(--white);
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 0.75em 1.5em;
+  border-radius: 10px;
+  border: 2px solid var(--gold);
+  font-size: clamp(13px, 3.4vw, 16px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.jobad__cta:hover { background: var(--primary-brown); transform: translateY(-2px); }
+.jobad__cta::after { content: "›"; font-size: 1.2em; line-height: 1; color: var(--light-gold); }
+
+@media (max-width: 340px) {
+  .jobad__title { font-size: 14px; padding: 0.5em 0.8em; }
+}
