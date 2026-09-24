@@ -14,14 +14,22 @@
        3. brand logo         4. job title       5. company logo
        6. apply CTA
        ================================================== -->
+  <div class="jobad-outer">
   <div class="jobad" id="jobad">
 
     <img class="jobad__photo" id="jobadPhoto" alt="">
     <div class="jobad__scrim"></div>
 
     <!-- Curved white/cream + gold panel. Purely vector — never distorts
-         when the background photo changes. Adjust the two path "d"
-         values below if you want a different curve silhouette. -->
+         when the background photo changes.
+
+         The path deliberately hugs the right edge (x stays above ~330,
+         82% of the 400-wide viewBox) through y=0–150 (the title's
+         vertical band) and only bulges left, down to x~230 (57%), in
+         the empty middle of the photo — well clear of the company
+         logo (which ends at 36% width) and the title box (which ends
+         at 66% width). It swings back out near the bottom so it never
+         crosses behind the "Apply now" button either. -->
     <svg class="jobad__curve" viewBox="0 0 400 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -30,9 +38,9 @@
         </linearGradient>
       </defs>
       <!-- cream border sliver -->
-      <path d="M400,0 C250,50 190,150 255,240 C320,330 210,390 255,470 C275,492 340,498 400,500 Z" fill="var(--cream)"/>
+      <path d="M400,0 C375,0 335,60 335,120 C335,185 230,225 275,300 C305,350 250,420 300,460 C330,480 365,495 400,500 Z" fill="var(--cream)"/>
       <!-- solid brown/gold panel, offset right to reveal the cream sliver -->
-      <path d="M400,0 C250,50 190,150 255,240 C320,330 210,390 255,470 C275,492 340,498 400,500 Z"
+      <path d="M400,0 C375,0 335,60 335,120 C335,185 230,225 275,300 C305,350 250,420 300,460 C330,480 365,495 400,500 Z"
             transform="translate(16,0)" fill="url(#panelGradient)"/>
     </svg>
 
@@ -51,6 +59,7 @@
 
     <a class="jobad__cta" id="jobadCta" href="#" target="_blank" rel="noopener"></a>
 
+  </div>
   </div>
 
   <script src="script.js"></script>
