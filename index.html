@@ -1,67 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Job Ad Template</title>
-<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GamHub Jobs — CV Tips</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- ==================================================
-       MAIN ADVERTISEMENT CONTAINER (layers, top to bottom):
-       1. background photo   2. curved separator + color panel
-       3. brand logo         4. job title       5. company logo
-       6. apply CTA
-       ================================================== -->
-  <div class="jobad-outer">
-  <div class="jobad" id="jobad">
+    <!-- ============ CAROUSEL CHROME (counter + prev/next) ============
+         Lives outside the individual screens so it stays on top and in
+         place while slides swap underneath it. Hidden during the opening
+         screen; shown for every tip / share / CTA slide. -->
+    <div class="progress-badge" id="progress-badge">
+        <span id="progress-count">1 / 1</span>
+        <span class="type-tag" id="type-tag">CV TIP #1</span>
+    </div>
+    <button type="button" class="nav-arrow nav-prev" id="nav-prev" aria-label="Previous slide">&#10094;</button>
+    <button type="button" class="nav-arrow nav-next" id="nav-next" aria-label="Next slide">&#10095;</button>
 
-    <img class="jobad__photo" id="jobadPhoto" alt="">
-    <div class="jobad__scrim"></div>
+    <!-- ============ SCREEN 1: OPENING HOOK ============ -->
+    <div class="screen" id="opening-screen">
+        <div class="tiktok-banner">
+            <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+            </svg>
+            <span class="tiktok-text">FOLLOW TIKTOK @gamhubjobs</span>
+        </div>
 
-    <!-- Curved white/cream + gold panel. Purely vector — never distorts
-         when the background photo changes.
+        <div class="promo-card">
+            
 
-         The path deliberately hugs the right edge (x stays above ~330,
-         82% of the 400-wide viewBox) through y=0–150 (the title's
-         vertical band) and only bulges left, down to x~230 (57%), in
-         the empty middle of the photo — well clear of the company
-         logo (which ends at 36% width) and the title box (which ends
-         at 66% width). It swings back out near the bottom so it never
-         crosses behind the "Apply now" button either. -->
-    <svg class="jobad__curve" viewBox="0 0 400 500" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="panelGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="var(--primary-brown)"/>
-          <stop offset="100%" stop-color="var(--dark-brown)"/>
-        </linearGradient>
-      </defs>
-      <!-- cream border sliver -->
-      <path d="M400,0 C375,0 335,60 335,120 C335,185 230,225 275,300 C305,350 250,420 300,460 C330,480 365,495 400,500 Z" fill="var(--cream)"/>
-      <!-- solid brown/gold panel, offset right to reveal the cream sliver -->
-      <path d="M400,0 C375,0 335,60 335,120 C335,185 230,225 275,300 C305,350 250,420 300,460 C330,480 365,495 400,500 Z"
-            transform="translate(16,0)" fill="url(#panelGradient)"/>
-    </svg>
-
-    <div class="jobad__brand" id="jobadBrandWrap">
-      <img id="jobadBrandImg" alt="Brand logo" style="display:none;">
-      <div class="jobad__brand-fallback" id="jobadBrandFallback">GAM<span>HUBJOBS</span>.com</div>
+            <div class="promo-content">
+                <div class="promo-text" id="open-text1">
+                    CV TIPS<br>
+                    THAT COULD ACTUALLY <span class="highlight">HELP YOU GET HIRED IN THE GAMBIA</span>
+                </div>
+                
+            </div>
+        </div>
     </div>
 
-    <div class="jobad__title-wrap">
-      <span class="jobad__title" id="jobadTitle"></span>
+    <!-- ============ SCREEN 2: CV TIPS ============ -->
+    <div class="screen" id="content-screen">
+        <div class="tip-card" id="tip-card">
+            <div class="tiktok-banner">
+                <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                    <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+                </svg>
+                <span class="tiktok-text">FOLLOW TIKTOK @gamhubjobs</span>
+            </div>
+
+            <div class="timer-section">
+                <div class="timer-container">
+                    <div class="timer" id="timer"></div>
+                </div>
+                <div class="countdown hidden" id="countdown">5</div>
+            </div>
+
+            <div class="stage-area" id="stage-area">
+                <!-- Stage 1: hook / question -->
+                <div class="stage hook-stage" id="hook-stage">
+                    <div class="stage-icon">💭</div>
+                    <div class="hook-text" id="hook-text"></div>
+                </div>
+
+                <!-- Stage 2: the actual CV tip, shown as two examples side by side.
+                     No "mistake"/"better" labels — the example + Why It Works
+                     explanation let the viewer work out which is stronger. -->
+                <div class="stage content-stage" id="content-stage">
+                    <span class="topic-badge badge-cv content-tag" id="content-tag"></span>
+                    <div class="compare-row" id="compare-row">
+                        <div class="compare-panel mistake" id="mistake-panel">
+                            <div class="compare-label">A</div>
+                            <img class="compare-image" id="mistake-image" alt="" style="display:none;">
+                            <div class="compare-text" id="mistake-text" style="display:none;"></div>
+                        </div>
+                        <div class="compare-panel approach" id="approach-panel">
+                            <div class="compare-label">B</div>
+                            <img class="compare-image" id="approach-image" alt="" style="display:none;">
+                            <div class="compare-text" id="approach-text" style="display:none;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stage 3: why it works -->
+                <div class="stage why-stage" id="why-stage">
+                    <div class="stage-icon">💡</div>
+                    <div class="why-title">WHY IT WORKS</div>
+                    <div class="why-text" id="why-text"></div>
+                    <div class="why-source" id="why-source"></div>
+                </div>
+
+                <div class="reveal-flash" id="reveal-flash"></div>
+            </div>
+        </div>
     </div>
 
-    <div class="jobad__company">
-      <img id="jobadCompanyLogo" alt="Company logo">
+    <!-- ============ SCREEN 3: ENGAGEMENT / SHARE SCREEN ============ -->
+    <div class="screen" id="share-screen">
+        <div class="tiktok-banner">
+            <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+            </svg>
+            <span class="tiktok-text">FOLLOW TIKTOK @gamhubjobs</span>
+        </div>
+
+        <div class="promo-card">
+
+            <div class="promo-content">
+                <div class="promo-text" id="share-text1">BEFORE THE LAST TIP</div>
+                <div class="promo-text" id="share-text2"><span class="highlight">SHARE</span> THESE TIPS WITH A FRIEND</div>
+                <div class="promo-text" id="share-text3">AND FOLLOW FOR MORE CV TIPS <span class="highlight"></span></div>
+            </div>
+        </div>
     </div>
 
-    <a class="jobad__cta" id="jobadCta" href="#" target="_blank" rel="noopener"></a>
+    <!-- ============ SCREEN 4: CLOSING CTA ============ -->
+    <div class="screen" id="cta-screen">
+        <div class="tiktok-banner">
+            <svg class="tiktok-logo" viewBox="0 0 32 32" fill="white">
+                <path d="M16.708 0.027c1.745-0.027 3.48-0.011 5.213-0.027 0.105 2.041 0.839 4.12 2.333 5.563 1.491 1.479 3.6 2.156 5.652 2.385v5.369c-1.923-0.063-3.855-0.463-5.6-1.291-0.76-0.344-1.468-0.787-2.161-1.24-0.009 3.896 0.016 7.787-0.025 11.667-0.104 1.864-0.719 3.719-1.803 5.255-1.744 2.557-4.771 4.224-7.88 4.276-1.907 0.109-3.812-0.411-5.437-1.369-2.693-1.588-4.588-4.495-4.864-7.615-0.032-0.667-0.043-1.333-0.016-1.984 0.24-2.537 1.495-4.964 3.443-6.615 2.208-1.923 5.301-2.839 8.197-2.297 0.027 1.975-0.052 3.948-0.052 5.923-1.323-0.428-2.869-0.308-4.025 0.495-0.844 0.547-1.485 1.385-1.819 2.333-0.276 0.676-0.197 1.427-0.181 2.145 0.317 2.188 2.421 4.027 4.667 3.828 1.489-0.016 2.916-0.88 3.692-2.145 0.251-0.443 0.532-0.896 0.547-1.417 0.131-2.385 0.079-4.76 0.095-7.145 0.011-5.375-0.016-10.735 0.025-16.093z"></path>
+            </svg>
+            <span class="tiktok-text">FOLLOW TIKTOK @gamhubjobs</span>
+        </div>
 
-  </div>
-  </div>
+        <div class="promo-card">
+            <div class="promo-content">
+                <div class="promo-text" id="cta-text1">FOUND THIS CV TIP USEFUL?<br><span class="highlight">DON'T STOP HERE.</span></div>
+                <div class="promo-text" id="cta-text2">BUILD A PROFESSIONAL CV FOR YOUR NEXT APPLICATION</div>
+                <a class="cta-button" id="cta-button" href="https://www.gamhubjobs.com/cv-builder" target="_blank" rel="noopener">
+                    &#128073; Build your CV with GamHub Jobs
+                    <span class="cta-link-url">gamhubjobs.com/cv-builder</span>
+                </a>
+            </div>
+        </div>
+    </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
